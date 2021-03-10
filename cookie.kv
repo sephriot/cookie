@@ -36,29 +36,41 @@
             Rectangle:
                 size: self.width, self.height
                 pos: self.x, self.y
-        Widget:
-            canvas:
+        Button:
+            id: line_button
+            background_normal: 'icons/line.png'
+            on_release: root.line_button_click()
+            canvas.before:
                 Color:
                     rgb: (1, 0, 0)
                 Rectangle:
                     size: self.width, self.height
                     pos: self.x, self.y
-        Widget:
-            canvas:
+        Button:
+            id: circle_button
+            background_normal: 'icons/circle.png'
+            on_release: root.circle_button_click()
+            canvas.before:
                 Color:
                     rgb: (1, 0, 0)
                 Rectangle:
                     size: self.width, self.height
                     pos: self.x, self.y
-        Widget:
-            canvas:
+        Button:
+            id: rectangle_button
+            background_normal: 'icons/rectangle.png'
+            on_release: root.rectangle_button_click()
+            canvas.before:
                 Color:
                     rgb: (1, 0, 0)
                 Rectangle:
                     size: self.width, self.height
                     pos: self.x, self.y
-        Widget:
-            canvas:
+        Button:
+            id: freeform_button
+            background_normal: 'icons/freeform.png'
+            on_release: root.freeform_button_click()
+            canvas.before:
                 Color:
                     rgb: (1, 0, 0)
                 Rectangle:

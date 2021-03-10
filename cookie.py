@@ -4,7 +4,18 @@ from kivy.uix.widget import Widget
 
 
 class Cookie(FloatLayout):
-    pass
+
+    def line_button_click(self):
+        print("Line")
+
+    def circle_button_click(self):
+        print("Circle")
+
+    def rectangle_button_click(self):
+        print("rectangle")
+
+    def freeform_button_click(self):
+        print("freeform")
 
 
 class CookieApp(App):
