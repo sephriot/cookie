@@ -1,39 +1,21 @@
 from kivy.app import App
 from kivy.uix.floatlayout import FloatLayout
 
-import shapebutton
+from shapebutton import ShapeButton
+
 
 class Cookie(FloatLayout):
 
+    def shape_button_click(self, button):
+        next_state = not button.selected
+        self.deactivate_buttons()
+        button.selected = next_state
+        print(button.name)
+
     def deactivate_buttons(self):
-        self.ids.line_button.selected = False
-        self.ids.circle_button.selected = False
-        self.ids.rectangle_button.selected = False
-        self.ids.freeform_button.selected = False
-
-    def line_button_click(self):
-        next_state = not self.ids.line_button.selected
-        self.deactivate_buttons()
-        self.ids.line_button.selected = next_state
-        print("Line")
-
-    def circle_button_click(self):
-        next_state = not self.ids.circle_button.selected
-        self.deactivate_buttons()
-        self.ids.circle_button.selected = next_state
-        print("Circle")
-
-    def rectangle_button_click(self):
-        next_state = not self.ids.rectangle_button.selected
-        self.deactivate_buttons()
-        self.ids.rectangle_button.selected = next_state
-        print("rectangle")
-
-    def freeform_button_click(self):
-        next_state = not self.ids.freeform_button.selected
-        self.deactivate_buttons()
-        self.ids.freeform_button.selected = next_state
-        print("freeform")
+        for key in self.ids:
+            if isinstance(self.ids[key], ShapeButton):
+                self.ids[key].selected = False
 
 
 class CookieApp(App):

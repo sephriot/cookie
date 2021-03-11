@@ -40,20 +40,24 @@
                 pos: self.x, self.y
         ShapeButton:
             id: line_button
+            name: 'line'
             background_normal: 'icons/line.png'
-            on_release: root.line_button_click()
+            on_release: root.shape_button_click(self)
         ShapeButton:
             id: circle_button
+            name: 'circle'
             background_normal: 'icons/circle.png'
-            on_release: root.circle_button_click()
+            on_release: root.shape_button_click(self)
         ShapeButton:
             id: rectangle_button
+            name: 'rectangle'
             background_normal: 'icons/rectangle.png'
-            on_release: root.rectangle_button_click()
+            on_release: root.shape_button_click(self)
         ShapeButton:
             id: freeform_button
+            name: 'freeform'
             background_normal: 'icons/freeform.png'
-            on_release: root.freeform_button_click()
+            on_release: root.shape_button_click(self)
 
     BoxLayout:
         size_hint: 0.47, 0.14
