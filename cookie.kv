@@ -1,28 +1,28 @@
 #: include shapebutton.kv
+#: include picture.kv
+#: include pictureview.kv
 
 <Cookie>:
     canvas.before:
         Color:
-            rgb: (0.7, 0.7, 0.7)
+            rgb: (0.9, 0.9, 0.9)
         Rectangle:
             size: self.width, self.height
             pos: self.x, self.y
 
-    Widget:
+    PictureView:
         size_hint: 0.47, 0.8
         pos_hint: {'x': 0.02, 'y': 0.02}
-        canvas:
-            Color:
-                rgb: (0, 1, 0)
-            Rectangle:
-                size: self.width, self.height
-                pos: self.x, self.y
+
+        Picture:
+            source: 'img/153060008_882649488979447_7659123131314854157_n.jpg'
+
     Widget:
         size_hint: 0.47, 0.8
         pos_hint: {'x': 0.51, 'y': 0.02}
         canvas:
             Color:
-                rgb: (1, 1, 0)
+                rgb: (0.8, 0.8, 0.8)
             Rectangle:
                 size: self.width, self.height
                 pos: self.x, self.y
@@ -73,28 +73,28 @@
         Widget:
             canvas:
                 Color:
-                    rgb: (0, 0, 1)
+                    rgb: (0.8, 0.8, 0.8)
                 Rectangle:
                     size: self.width, self.height
                     pos: self.x, self.y
         Widget:
             canvas:
                 Color:
-                    rgb: (0, 0, 1)
+                    rgb: (0.8, 0.8, 0.8)
                 Rectangle:
                     size: self.width, self.height
                     pos: self.x, self.y
         Widget:
             canvas:
                 Color:
-                    rgb: (0, 0, 1)
+                    rgb: (0.8, 0.8, 0.8)
                 Rectangle:
                     size: self.width, self.height
                     pos: self.x, self.y
         Widget:
             canvas:
                 Color:
-                    rgb: (0, 0, 1)
+                    rgb: (0.8, 0.8, 0.8)
                 Rectangle:
                     size: self.width, self.height
                     pos: self.x, self.y

@@ -2,6 +2,8 @@ from kivy.app import App
 from kivy.uix.floatlayout import FloatLayout
 
 from shapebutton import ShapeButton
+from picture import Picture
+from pictureview import PictureView
 
 
 class Cookie(FloatLayout):
