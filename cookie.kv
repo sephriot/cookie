@@ -1,6 +1,7 @@
 #: include shapebutton.kv
 #: include picture.kv
 #: include pictureview.kv
+#: include listview.kv
 
 <Cookie>:
     canvas.before:
@@ -19,10 +20,11 @@
             id: picture
             source: 'img/153060008_882649488979447_7659123131314854157_n.jpg'
 
-    Widget:
+    ListView:
+        id: list_view
         size_hint: 0.47, 0.8
         pos_hint: {'x': 0.51, 'y': 0.02}
-        canvas:
+        canvas.before:
             Color:
                 rgb: (0.8, 0.8, 0.8)
             Rectangle:

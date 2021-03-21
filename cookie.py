@@ -1,12 +1,21 @@
 from kivy.app import App
+from kivy.graphics.context_instructions import Color
 from kivy.uix.floatlayout import FloatLayout
 
 from shapebutton import ShapeButton
 from picture import Picture
 from pictureview import PictureView
+from listview import ListView
 
 
 class Cookie(FloatLayout):
+
+    def __init__(self, **kwargs):
+        super(Cookie, self).__init__(**kwargs)
+        self.ids.picture.bind(last_drawing=self.drawing_callback)
+        self.ids.list_view.layout_manager.bind(selected_nodes=self.drawing_selection_callback)
+        self.drawings = []
+        self.last_selected = 0
 
     def enable_draw_mode(self, mode):
         self.ids.picture.draw_mode = mode
@@ -31,6 +40,26 @@ class Cookie(FloatLayout):
         for key in self.ids:
             if isinstance(self.ids[key], ShapeButton):
                 self.ids[key].selected = False
+
+    def drawing_callback(self, instance, value):
+        self.ids.list_view.data.append({'text': self.ids.picture.draw_mode})
+        self.ids.list_view.layout_manager.clear_selection()
+        self.drawings.append(value)
+
+    def drawing_selection_callback(self, instance, value):
+        if len(value) == 0:
+            return
+
+        self.paint_object(self.drawings[self.last_selected], Color(1, 1, 0))
+        self.last_selected = value[0]
+        self.paint_object(self.drawings[self.last_selected], Color(1, 0, 0))
+
+    def paint_object(self, instance, color):
+        self.ids.picture.canvas.remove(instance)
+        instance.remove(instance.children[0])
+        instance.insert(0, color)
+        self.ids.picture.canvas.add(instance)
+        self.ids.picture.canvas.ask_update()
 
 
 class CookieApp(App):

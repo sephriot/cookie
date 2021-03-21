@@ -30,7 +30,7 @@ class Picture(Scatter):
                 touch.ud['line'].close = True
 
     def on_touch_up(self, touch):
-        if not self.draw_mode:
+        if not self.draw_mode or touch.button == "scrolldown" or touch.button == "scrollup":
             return super(Picture, self).on_touch_up(touch)
 
         self.scale_touch(touch)

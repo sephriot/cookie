@@ -1,0 +1,7 @@
+<SelectableLabel>:
+    canvas.before:
+        Color:
+            rgba: (0.0, 0.9, 0.1, 0.5) if self.selected else (0, 0, 0, 0.7)
+        Rectangle:
+            pos: self.pos
+            size: self.size
