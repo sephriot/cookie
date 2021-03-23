@@ -15,7 +15,7 @@ class Cookie(FloatLayout):
         self.ids.picture.bind(last_drawing=self.drawing_callback)
         self.ids.list_view.layout_manager.bind(selected_nodes=self.drawing_selection_callback)
         self.drawings = []
-        self.last_selected = 0
+        self.last_selected = -1
 
     def enable_draw_mode(self, mode):
         self.ids.picture.draw_mode = mode
@@ -60,6 +60,16 @@ class Cookie(FloatLayout):
         instance.insert(0, color)
         self.ids.picture.canvas.add(instance)
         self.ids.picture.canvas.ask_update()
+
+    def delete_drawing(self):
+        if len(self.drawings) == 0:
+            return
+
+        self.ids.picture.canvas.remove(self.drawings[self.last_selected])
+        del self.drawings[self.last_selected]
+        del self.ids.list_view.data[self.last_selected]
+        self.last_selected = -1
+        self.ids.list_view.layout_manager.clear_selection()
 
 
 class CookieApp(App):

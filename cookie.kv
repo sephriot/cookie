@@ -68,35 +68,17 @@
         pos_hint: {'x': 0.51, 'y': 0.84}
         spacing: 5
         padding: 5,5,5,5
-        canvas:
+        canvas.before:
             Color:
                 rgb: (1, 1, 1)
             Rectangle:
                 size: self.width, self.height
                 pos: self.x, self.y
-        Widget:
-            canvas:
-                Color:
-                    rgb: (0.8, 0.8, 0.8)
-                Rectangle:
-                    size: self.width, self.height
-                    pos: self.x, self.y
-        Widget:
-            canvas:
-                Color:
-                    rgb: (0.8, 0.8, 0.8)
-                Rectangle:
-                    size: self.width, self.height
-                    pos: self.x, self.y
-        Widget:
-            canvas:
-                Color:
-                    rgb: (0.8, 0.8, 0.8)
-                Rectangle:
-                    size: self.width, self.height
-                    pos: self.x, self.y
-        Widget:
-            canvas:
+        Button:
+            id: shape_remove_button
+            text: 'Delete'
+            on_release: root.delete_drawing()
+            canvas.before:
                 Color:
                     rgb: (0.8, 0.8, 0.8)
                 Rectangle:
