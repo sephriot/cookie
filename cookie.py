@@ -1,3 +1,4 @@
+from kivy import Config
 from kivy.app import App
 from kivy.graphics.context_instructions import Color
 from kivy.uix.floatlayout import FloatLayout
@@ -79,4 +80,5 @@ class CookieApp(App):
 
 
 if __name__ == '__main__':
+    Config.read('config.ini')
     CookieApp().run()
