@@ -2,11 +2,13 @@ from kivy import Config
 from kivy.app import App
 from kivy.graphics.context_instructions import Color
 from kivy.uix.floatlayout import FloatLayout
+from kivy.uix.popup import Popup
 
 from shapebutton import ShapeButton
 from picture import Picture
 from pictureview import PictureView
 from listview import ListView
+from loadfiledialog import LoadFileDialog
 
 
 class Cookie(FloatLayout):
@@ -17,6 +19,7 @@ class Cookie(FloatLayout):
         self.ids.list_view.layout_manager.bind(selected_nodes=self.drawing_selection_callback)
         self.drawings = []
         self.last_selected = -1
+        self.popup = None
 
     def enable_draw_mode(self, mode):
         self.ids.picture.draw_mode = mode
@@ -71,6 +74,17 @@ class Cookie(FloatLayout):
         del self.ids.list_view.data[self.last_selected]
         self.last_selected = -1
         self.ids.list_view.layout_manager.clear_selection()
+
+    def open_file(self):
+        self.popup = Popup(title="Open File", content=LoadFileDialog(load=self.load_file, cancel=self.dismiss_popup), size_hint=(0.9, 0.9))
+        self.popup.open()
+
+    def load_file(self, filename):
+        self.ids.picture.source = filename
+        self.dismiss_popup()
+
+    def dismiss_popup(self):
+        self.popup.dismiss()
 
 
 class CookieApp(App):

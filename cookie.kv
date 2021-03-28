@@ -2,6 +2,7 @@
 #: include picture.kv
 #: include pictureview.kv
 #: include listview.kv
+#: include loadfiledialog.kv
 
 <Cookie>:
     canvas.before:
@@ -50,6 +51,7 @@
             padding: 4, 4, 4, 4
             Button:
                 text: 'Open file'
+                on_release: root.open_file()
             GridLayout:
                 rows: 1
                 cols: 5

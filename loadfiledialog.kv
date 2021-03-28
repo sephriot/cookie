@@ -1,0 +1,14 @@
+<LoadFileDialog>:
+    orientation: 'vertical'
+    FileChooserListView:
+        id: filechooser
+
+    BoxLayout:
+        height: 30
+        size_hint_y: None
+        Button:
+            text: 'Cancel'
+            on_release: root.cancel()
+        Button:
+            text: 'Load'
+            on_release: root.load(filechooser.selection[0])
