@@ -1,7 +1,12 @@
+#: include listview.kv
+
 <LoadFileDialog>:
     orientation: 'vertical'
-    FileChooserListView:
-        id: filechooser
+    BoxLayout:
+        ListView:
+            id: drives_list
+        FileChooserListView:
+            id: filechooser
 
     BoxLayout:
         height: 30
