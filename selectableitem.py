@@ -1,17 +1,15 @@
 from kivy.properties import BooleanProperty
-from kivy.uix.label import Label
 from kivy.uix.recycleview.views import RecycleDataViewBehavior
+from kivy.uix.widget import Widget
 
-from selectableitem import SelectableItem
 
-
-class SelectableLabel(Label, SelectableItem):
+class SelectableItem(Widget, RecycleDataViewBehavior):
     selected = BooleanProperty(False)
     index = None
 
     def refresh_view_attrs(self, rv, index, data):
         self.index = index
-        return super(SelectableLabel, self).refresh_view_attrs(rv, index, data)
+        return super(SelectableItem, self).refresh_view_attrs(rv, index, data)
 
     def on_touch_down(self, touch):
         if self.collide_point(touch.x, touch.y):

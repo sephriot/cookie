@@ -3,6 +3,9 @@
 #: include pictureview.kv
 #: include listview.kv
 #: include loadfiledialog.kv
+#: include savefiledialog.kv
+
+#: include shapelabel.kv
 
 <Cookie>:
     canvas.before:
@@ -22,10 +25,31 @@
             id: picture
             source: 'img/153060008_882649488979447_7659123131314854157_n.jpg'
 
+    BoxLayout:
+        size_hint: None, None
+        size: 500, 60
+        pos: root.width - 510, root.height - 70
+        spacing: 4
+        padding: 4,4,4,4
+        canvas.before:
+            Color:
+                rgba: (1, 1, 1, 1)
+            Rectangle:
+                size: self.width, self.height
+                pos: self.x, self.y
+        ListViewHeaderLabel:
+            text: 'Type'
+        ListViewHeaderLabel:
+            text: 'Length'
+        ListViewHeaderLabel:
+            text: 'Area'
+        ListViewHeaderLabel:
+            text: 'Volume'
+
     ListView:
         id: list_view
         size_hint: None, None
-        size: 500, root.height - 20
+        size: 500, root.height - 80
         pos: root.width - 510, 10
         canvas.before:
             Color:
@@ -33,6 +57,7 @@
             Rectangle:
                 size: self.width, self.height
                 pos: self.x, self.y
+        viewclass: 'ShapeLabel'
 
     BoxLayout:
         size_hint: None, None
@@ -49,9 +74,16 @@
             col: 1
             spacing: 4
             padding: 4, 4, 4, 4
-            Button:
-                text: 'Open file'
-                on_release: root.open_file()
+            BoxLayout:
+                spacing: 4
+                Button:
+                    text: 'Open file'
+                    on_release: root.open_file()
+                Button:
+                    text: 'Save'
+                    size_hint: None, None
+                    size: 200, 64
+                    on_release: root.save_file()
             GridLayout:
                 rows: 1
                 cols: 5
@@ -86,3 +118,11 @@
                         Rectangle:
                             size: self.width, self.height
                             pos: self.x, self.y
+
+<ListViewHeaderLabel@Label>
+    canvas.before:
+        Color:
+            rgba: (0, 0, 0, 0.7)
+        Rectangle:
+            size: self.width, self.height
+            pos: self.x, self.y

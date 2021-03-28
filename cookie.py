@@ -1,5 +1,8 @@
+import os
+
 from kivy import Config
 from kivy.app import App
+from kivy.clock import Clock
 from kivy.graphics.context_instructions import Color
 from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.popup import Popup
@@ -9,6 +12,9 @@ from picture import Picture
 from pictureview import PictureView
 from listview import ListView
 from loadfiledialog import LoadFileDialog
+from shapelabel import ShapeLabel
+from dataconverter import convert
+from savefiledialog import SaveFileDialog
 
 
 class Cookie(FloatLayout):
@@ -46,7 +52,7 @@ class Cookie(FloatLayout):
                 self.ids[key].selected = False
 
     def drawing_callback(self, instance, value):
-        self.ids.list_view.data.append({'text': self.ids.picture.draw_mode})
+        Clock.schedule_once(lambda dt: self.ids.list_view.data.append(convert(self.ids.picture.draw_mode, value)))
         self.ids.list_view.layout_manager.clear_selection()
         self.drawings.append(value)
 
@@ -76,7 +82,8 @@ class Cookie(FloatLayout):
         self.ids.list_view.layout_manager.clear_selection()
 
     def open_file(self):
-        self.popup = Popup(title="Open File", content=LoadFileDialog(load=self.load_file, cancel=self.dismiss_popup), size_hint=(0.9, 0.9))
+        self.popup = Popup(title="Open File", content=LoadFileDialog(load=self.load_file, cancel=self.dismiss_popup),
+                           size_hint=(0.9, 0.9))
         self.popup.open()
 
     def load_file(self, filename):
@@ -85,6 +92,23 @@ class Cookie(FloatLayout):
 
     def dismiss_popup(self):
         self.popup.dismiss()
+
+    def save_file(self):
+        self.popup = Popup(title="Save File", content=SaveFileDialog(save_file=self.save, cancel=self.dismiss_popup),
+                           size_hint=(0.9, 0.9))
+        self.popup.open()
+
+    def save(self, path, filename):
+        self.dismiss_popup()
+        full_path = os.path.join(path, filename)
+        self.write_data(full_path)
+
+    def write_data(self, path):
+        with open(path, "w") as f:
+            f.write("Type,Length,Area,Volume\n")
+            for item in self.ids.list_view.data:
+                line = item['type'] + ',' + str(item['length']) + ',' + str(item['area']) + ',' + str(item['volume'])
+                f.write(line + '\n')
 
 
 class CookieApp(App):

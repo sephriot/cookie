@@ -1,0 +1,26 @@
+#: include listview.kv
+
+<SaveFileDialog>:
+    orientation: 'vertical'
+    BoxLayout:
+        ListView:
+            id: drives_list
+        FileChooserListView:
+            id: filechooser
+            on_selection: text_input.text = self.selection and self.selection[0] or ''
+
+    TextInput:
+        id: text_input
+        size_hint_y: None
+        height: 30
+        multiline: False
+
+    BoxLayout:
+        height: 30
+        size_hint_y: None
+        Button:
+            text: 'Cancel'
+            on_release: root.cancel()
+        Button:
+            text: 'Save'
+            on_release: root.save_file(filechooser.path, text_input.text)
