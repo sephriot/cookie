@@ -43,7 +43,6 @@ class Cookie(FloatLayout):
         next_state = not button.selected
         self.deactivate_buttons()
         button.selected = next_state
-        print(button.name)
         if next_state:
             self.enable_draw_mode(button.name)
 
