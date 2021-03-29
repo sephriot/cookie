@@ -16,6 +16,8 @@ from shapelabel import ShapeLabel
 from dataconverter import convert
 from savefiledialog import SaveFileDialog
 
+import win32timezone
+
 
 class Cookie(FloatLayout):
 
